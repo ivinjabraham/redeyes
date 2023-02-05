@@ -1,5 +1,6 @@
 import requests
 import os
+import shutil
 
 API_KEY = os.getenv("NASAKEY")
 
@@ -26,4 +27,12 @@ if response.json()['photos'] == []:
 
 for i in range(len(photo_list)):
     photos.append(photo_list[i]['img_src'])
-    
+
+for idx, image_url in enumerate(photos):
+    res = requests.get(image_url, allow_redirects=True)
+    if res.status_code == 200:
+        with open(f"images/{idx}.png", "wb") as file:
+            file.write(res.content)
+        print(f"{idx} done")
+    else:
+        print(f"{idx} skipped")
