@@ -4,9 +4,8 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
 import sys, os, glob
 import requests, urllib.request
-import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
+from urllib.request import urlopen
+import ezgmail
 
 class DownloadThread(QThread): #* What?
     
@@ -23,7 +22,7 @@ class DownloadThread(QThread): #* What?
                 break
 
             # * what
-            res = urllib.request.urlopen(self.photo_list[i]['img_src'])
+            res = urlopen(self.photo_list[i]['img_src'])
             
             # Succesful response
             if res.getcode() == 200:
@@ -145,7 +144,9 @@ class UI(QMainWindow):
 
         #* something something threading yes        
         self.dl_thread.photo_list = response.json()['photos']
+        self.last_image = len(self.dl_thread.photo_list) - 1
         self.dl_thread.start()
+        
         # TODO: Make dialog box to handle days where there are no photos taken
         # if response.json()['photos'] == []:
             # pass
@@ -159,7 +160,7 @@ class UI(QMainWindow):
         self.fetch_button.setEnabled(True)
 
     def send_mail(self):
-        pass
+        ezgmail.send('gmailid@gmail.com', 'Subject', 'Body', attachments='default.png', cc='anothergmailid@gmail.com' )
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
