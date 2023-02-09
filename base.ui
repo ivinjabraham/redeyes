@@ -6,12 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>796</width>
-    <height>614</height>
+    <width>820</width>
+    <height>589</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="pushButton">
@@ -67,6 +70,11 @@ color: rgb(26, 95, 180)
       <height>25</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">#pushButton_4{
+	background-color: #FE9677;
+}</string>
+    </property>
     <property name="text">
      <string>Fetch</string>
     </property>
@@ -76,12 +84,15 @@ color: rgb(26, 95, 180)
      <rect>
       <x>-10</x>
       <y>0</y>
-      <width>811</width>
-      <height>501</height>
+      <width>841</width>
+      <height>521</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QDateEdit" name="dateEdit">
@@ -118,6 +129,19 @@ color: rgb(26, 95, 180)
       <string>Oppurtunity</string>
      </property>
     </item>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>-40</x>
+      <y>510</y>
+      <width>871</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
