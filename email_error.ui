@@ -41,7 +41,7 @@ QLabel {
     </rect>
    </property>
    <property name="text">
-    <string>No photos found. Try another date.</string>
+    <string>Could Not Send Mail. Try again.</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>

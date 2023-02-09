@@ -26,10 +26,7 @@ class DownloadThread(QThread):
             res = urlopen(self.photo_list[i]['img_src'])
             if res.getcode() == 200:
                 with open(f"images/{i}.png", "wb") as file:
-                    # self.setWindowTitle(f"Downloading image {i+1} out of {len(self.photo_list)}")
                     file.write(res.read())
-            # else:
-                # self.setWindowTitle(f"Downloading image {i+1} failed.")
                 
         self.signal.emit(res.getcode())
 
@@ -53,12 +50,22 @@ class MailThread(QThread):
         if "," in self.receiver:
             for address in list(self.receiver.split(",")):
                 attachments = [f"images/{i}.png" for i in range(count)]
-                ezgmail.send(address, self.subject, self.body, attachments)
+                try: 
+                    ezgmail.send(address, self.subject, self.body, attachments)
+                    code = 0
+                except:
+                    code = 1
+
+
         else:
             attachments = [f"images/{i}.png" for i in range(count)]
-            ezgmail.send(self.receiver, self.subject, self.body, attachments)
+            try:
+                ezgmail.send(self.receiver, self.subject, self.body, attachments)
+                code = 0
+            except:
+                code = 1
 
-        self.signal.emit(self.receiver)
+        self.signal.emit(code)
 
 # Main Window        
 class UI(QMainWindow):
@@ -89,6 +96,11 @@ class UI(QMainWindow):
         self.previous_button.clicked.connect(self.previous)
         self.fetch_button.clicked.connect(self.fetch)
         self.mail.clicked.connect(self.send_mail)
+
+        self.next_button.setEnabled(False)
+        self.previous_button.setEnabled(False)
+        # self.mail.setEnabled(False)
+
         
         self.dl_thread = DownloadThread()
         self.dl_thread.signal.connect(self.finished)
@@ -144,16 +156,13 @@ class UI(QMainWindow):
         url = base_url + rover.lower() + "/photos?"
         parameters = {
             "earth_date": date,
-            "api_key": API_KEY
+            "api_key": "ht4THB6YMyQS61KUTjWOCXCTcGXOA15k7Aalx7rt"
         }
 
         response = requests.get(url, params=parameters)
 
         if list(str(response.status_code))[0] != "2":
             self.fetch_button.setEnabled(True)
-            self.next_button.setEnabled(True)
-            self.previous_button.setEnabled(True)
-            self.mail.setEnabled(True)
             self.date.setEnabled(True)
             self.dropdown.setEnabled(True)
             
@@ -164,9 +173,6 @@ class UI(QMainWindow):
 
         elif response.json()['photos'] == []:
             self.fetch_button.setEnabled(True) 
-            self.next_button.setEnabled(True)
-            self.previous_button.setEnabled(True)
-            self.mail.setEnabled(True)
             self.date.setEnabled(True)
             self.dropdown.setEnabled(True)
 
@@ -204,6 +210,7 @@ class UI(QMainWindow):
         dlg.exec()
 
         self.setWindowTitle(f"Mail sent!")
+
 
 class MailDialog(QDialog):
 
@@ -247,6 +254,13 @@ class MailDialog(QDialog):
         self.mail_thread.start()
 
     def sent(self, result):
+        if result:
+            failure = EmailError()
+            failure.exec()
+        else:
+            sucess = EmailSent()
+            sucess.exec()
+        
         self.close()
 
 class ServerErrorDialog(QDialog):
@@ -267,6 +281,28 @@ class PhotoErrorDialog(QDialog):
 
         loadUi('no_photos.ui', self)
 
+        self.ok_button = self.findChild(QPushButton, "pushButton")
+
+        self.ok_button.clicked.connect(lambda:self.close())
+
+class EmailError(QDialog):
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+        loadUi('email_error.ui', self)
+    
+        self.ok_button = self.findChild(QPushButton, "pushButton")
+
+        self.ok_button.clicked.connect(lambda:self.close())
+        
+class EmailSent(QDialog):
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+        loadUi('mail_sent.ui', self)
+    
         self.ok_button = self.findChild(QPushButton, "pushButton")
 
         self.ok_button.clicked.connect(lambda:self.close())

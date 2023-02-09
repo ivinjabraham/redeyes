@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>344</width>
-    <height>134</height>
+    <width>250</width>
+    <height>130</height>
    </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>250</width>
+    <height>140</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
@@ -34,14 +40,14 @@ QLabel {
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>40</y>
-     <width>311</width>
-     <height>31</height>
+     <x>50</x>
+     <y>10</y>
+     <width>131</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="text">
-    <string>No photos found. Try another date.</string>
+    <string>   Mail Sent!</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -50,10 +56,10 @@ QLabel {
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>90</y>
-     <width>89</width>
-     <height>25</height>
+     <x>80</x>
+     <y>70</y>
+     <width>81</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="cursor">
