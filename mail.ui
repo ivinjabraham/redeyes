@@ -13,6 +13,25 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+	background-color: rgb(119, 118, 123)
+}
+
+QPushButton {
+	background-color: #424242;
+	color: white;
+}
+
+QLabel {
+	color: dark grey;
+}
+
+QTextEdit {
+	background-color: #424242;
+	color: rgb(192, 191, 188)
+}</string>
+  </property>
   <widget class="QTextEdit" name="textEdit">
    <property name="geometry">
     <rect>
@@ -21,6 +40,9 @@
      <width>471</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Separate multiple addresses with a comma</string>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_2">
@@ -31,6 +53,9 @@
      <width>471</width>
      <height>261</height>
     </rect>
+   </property>
+   <property name="placeholderText">
+    <string/>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEdit_3">

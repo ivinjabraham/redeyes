@@ -14,7 +14,33 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">QPushButton{
+	background-color: #424242;
+	color: white;
+	font: 11pt &quot;JetBrains Mono&quot;;
+}
+
+QMainWindow{
+	background-color: rgb(119, 118, 123)
+}
+
+QDateEdit {
+	background-color: #424242;
+	color: white;
+	font: 11pt &quot;JetBrains Mono&quot;;
+}
+
+QComboBox {
+	background-color: #424242;
+	color: white;
+	font: 11pt &quot;JetBrains Mono&quot;;
+}
+
+QComboBox QAbstractItemView {
+	background-color: #424242;
+	color: white;
+	font: 11pt &quot;JetBrains Mono&quot;;
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="pushButton">
@@ -71,9 +97,7 @@ color: rgb(26, 95, 180)
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#pushButton_4{
-	background-color: #FE9677;
-}</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>Fetch</string>
@@ -110,7 +134,7 @@ color: rgb(26, 95, 180)
      <rect>
       <x>240</x>
       <y>540</y>
-      <width>86</width>
+      <width>111</width>
       <height>25</height>
      </rect>
     </property>

@@ -6,19 +6,36 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>292</width>
-    <height>137</height>
+    <width>375</width>
+    <height>158</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QPushButton{
+	background-color: #424242;
+	color: white;
+	font: 11pt &quot;JetBrains Mono&quot;;
+}
+
+QDialog{
+	background-color: rgb(119, 118, 123)
+}
+ 
+QLabel {
+	color: white;
+	font: 11pt &quot;JetBrains Mono&quot;;
+}
+</string>
+  </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>30</x>
      <y>30</y>
-     <width>251</width>
+     <width>321</width>
      <height>61</height>
     </rect>
    </property>
@@ -38,7 +55,7 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>100</x>
+     <x>140</x>
      <y>100</y>
      <width>89</width>
      <height>25</height>
