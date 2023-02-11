@@ -34,11 +34,6 @@ class MailThread(QThread):
 
     signal = pyqtSignal('PyQt_PyObject')
 
-    def __init(self):
-        self.receiver = ""
-        self.subject = ""
-        self.body = ""
-
     def run(self):
 
         count = 0
@@ -99,7 +94,7 @@ class UI(QMainWindow):
 
         self.next_button.setEnabled(False)
         self.previous_button.setEnabled(False)
-        # self.mail.setEnabled(False)
+        self.mail.setEnabled(False)
 
         
         self.dl_thread = DownloadThread()
