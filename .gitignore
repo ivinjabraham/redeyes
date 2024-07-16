@@ -1,5 +1,5 @@
-info.txt
-mars/
-images/
-credentials.json
-token.json
+# venv
+.env
+
+# personal notes about project
+notes.md
