@@ -5,7 +5,7 @@ from controllers.main_controller import MainController
 
 
 def main():
-    app = QApplication(sys.argv)
+    app = QApplication()
     controller = MainController()
     controller.show_api_key_form()
     sys.exit(app.exec_())
